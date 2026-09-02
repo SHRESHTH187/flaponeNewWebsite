@@ -113,6 +113,7 @@ header .logo .mark{width:165px; border-radius:8px; background:var(--paper); disp
 	.hero-inner{
 		display: flex; 
 		flex-direction:column;
+		gap: 12px;
 	}
 }
 .hero h1{font-size:var(--fs-7); color:var(--navy);}
@@ -348,7 +349,6 @@ header .logo .mark{width:165px; border-radius:8px; background:var(--paper); disp
 .center-detail{background:#fff; padding:32px; color:var(--text);}
 .center-detail .addr{font-size:var(--fs-2); color:var(--muted); margin-bottom:24px;}
 .center-facilities{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
-@media(max-width:480px){.center-facilities{grid-template-columns:1fr;}}
 .facility{display:flex; align-items:center; gap:10px; font-size:var(--fs-2); color:var(--text); padding:5px 0; border-bottom:1px solid var(--border);}
 .facility svg{width:15px;height:15px; stroke:var(--orange); flex-shrink:0;}
 
@@ -609,7 +609,7 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
 .success-card{
  scroll-snap-align:start; flex:0 0 auto; width:min(560px,85vw);
  background:#fff; border:1px solid var(--border); border-radius:22px;
- padding:20px; position:relative; overflow:hidden; box-shadow:0 10px 26px rgba(16,24,64,.06);
+ padding:36px; position:relative; overflow:hidden; box-shadow:0 10px 26px rgba(16,24,64,.06);
 }
 .success-card .sc-glow{position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(255,106,26,.16),transparent 70%); pointer-events:none;}
 .success-card .sc-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
@@ -638,7 +638,8 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
 .svc-breadcrumb a{color:#B9C1E0;}
 .svc-breadcrumb a:hover{color:#fff;}
 .svc-hero-inner{display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center; position:relative; z-index:1;}
-@media(max-width:960px){.svc-hero-inner{grid-template-columns:1fr;} .mobile-hide{display: none;}}
+@media(max-width:960px){
+	.svc-hero-inner{grid-template-columns:1fr;} .mobile-hide{display: none;}}
 .svc-hero h1{color:#fff; font-size:var(--fs-7); margin-bottom:16px;}
 .svc-hero p.lead{color:#B9C1E0; font-size:var(--fs-4); max-width:520px; margin-bottom:26px;}
 .svc-hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
@@ -699,7 +700,18 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
 
 .other-svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
 @media(max-width:820px){.other-svc-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.other-svc-grid{grid-template-columns:1fr;}}
+@media(max-width:560px){
+	.other-svc-grid{grid-template-columns:1fr;}
+	.about-panel, .pillar-card, .sector-card, .trust-card, .recog-item, .center-detail {
+		padding: 15px;
+	}
+	.success-card {
+		padding: 20px;
+	}
+	.final-cta {
+		padding: 30px;
+	}
+}
 .other-svc-card{background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:24px; transition:box-shadow .15s, transform .15s;}
 .other-svc-card:hover{box-shadow:0 12px 28px rgba(16,24,64,.08); transform:translateY(-2px);}
 .other-svc-card .osi{width:44px;height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
@@ -1053,9 +1065,9 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
  <p>At FlapOne Aviation, our motto is to transform the drone industry in India. Drones have become the new standard in today's industries, ranging from agriculture to rescue operations. This is the reason there is a lot of talk about drones. We train drone pilots to stand tall in every situation that may arise.</br></br>
 	 Quality, safety, and innovation are our standpoints, and we do not refrain from providing the absolute best that we have for our students and clients. All the programs in our kitty are aligned well with international standards. Our expert advice, mentorship and resources are beneficial for both novice and experienced professionals alike.</p>
  <div class="about-stats">
- <div><div class="as-n">2023</div><div class="as-l">Founded in Delhi, Delhi, India</div></div>
- <div><div class="as-n">40+</div><div class="as-l">Total members of flapone teams</div></div>
- <div><div class="as-n">22</div><div class="as-l">Total servicing states served</div></div>
+ <div><div class="as-n">2023</div><div class="as-l">Founded in Delhi</div></div>
+ <div><div class="as-n">40+</div><div class="as-l">Team members</div></div>
+ <div><div class="as-n">22</div><div class="as-l">States served</div></div>
  </div>
  <a class="btn btn-primary" style="margin-top:30px;" href="#quote">Work With Us</a>
  </div>
@@ -1960,7 +1972,7 @@ function setHero(i) {
 
 function restartHeroAuto(){
  clearInterval(heroTimer);
- heroTimer=setInterval(()=>setHero(heroIdx+1), 2000);
+ heroTimer=setInterval(()=>setHero(heroIdx+1), 10000);
 }
 heroRowEls.forEach(row=>row.addEventListener('click',()=>{
  setHero(Number(row.dataset.i));
