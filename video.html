@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlapOne — India's Complete Drone Technology Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.rv.vis {
+    opacity: 1;
+    transform: none;
+}
+.story-card .tag {
+    color: var(--orange-dark);
+}
+ .mc-foot {     display: flex;     justify-content: space-between;     align-items: center;     padding-top: 12px;     border-top: 1px solid var(--border);
+}
+ .mc-link {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 20px;}
+.rv {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .75s cubic-bezier(.4, 0, .2, 1), transform .75s cubic-bezier(.4, 0, .2, 1);}
+
+.story-card {
+    border-radius: 28px;
+    padding: 72px 72px 72px 72px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 72px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+:root{
+  --navy:#0A1330;
+  --navy-2:#101B3E;
+  --navy-line:#232E54;
+  --paper:#FFFFFF;
+  --grey-bg:#F6F7FB;
+  --text:#1B2340;
+  --muted:#555;
+  --border:#E7E9F2;
+  --orange:#FF6A1A;
+  --orange-dark:#E2570D;
+  --blue:#2F5FDB;
+  --green:#16A34A;
+  --purple:#7C3AED;
+  --font-d:'Manrope', sans-serif;
+  --font-b:'Inter', sans-serif;
+  --r:10px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-b); color:var(--text); background:var(--paper); line-height:1.55; -webkit-font-smoothing:antialiased;}
+img,svg{display:block; max-width:100%;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+h1,h2,h3,h4{font-family:var(--font-d); font-weight:800; line-height:1.15; letter-spacing:-.01em; color:var(--navy);}
+h2{font-size:clamp(26px,3.6vw,38px);}
+h3{font-size:19px;}
+p{color:var(--muted);}
+.section{padding:60px 0;}
+@media(max-width:700px){.section{padding:52px 0;}}
+.center{text-align:center;}
+.head{max-width:660px; margin:0 auto 46px;}
+.head p{margin-top:12px; font-size:15.5px;}
+.badge{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--orange); background:#FFF1E8; border:1px solid #FFDCC2;
+  padding:6px 14px; border-radius:20px; margin-bottom:16px;
+}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);}
+.badge.on-dark{background:rgba(255,106,26,.12); border-color:rgba(255,106,26,.35); color:#FF9856;}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; justify-content:center;
+  font-family:var(--font-d); font-weight:700; font-size:14.5px;
+  padding:13px 24px; border-radius:8px; border:1.5px solid transparent; cursor:pointer;
+  transition:all .15s ease;
+}
+.btn-primary{background:var(--orange); color:#fff;}
+.btn-primary:hover{background:var(--orange-dark);}
+.btn-outline{border-color:var(--border); color:var(--navy); background:#fff;}
+.btn-outline:hover{border-color:var(--navy);}
+.btn-outline.on-dark{border-color:#3A4576; color:#fff; background:transparent;}
+.btn-outline.on-dark:hover{border-color:#fff;}
+.btn svg{width:15px;height:15px;}
+.checkmark{width:14px;height:14px; flex-shrink:0;}
+
+/* ===== TOPBAR + NAV ===== */
+.topbar{background:var(--grey-bg); color:var(--muted); font-size:12.5px; padding:8px 0; border-bottom:1px solid var(--border);}
+.topbar .wrap{display:flex; justify-content:space-between; align-items:center;}
+.topbar .left{display:flex; gap:20px;}
+.topbar .left span{display:flex; align-items:center; gap:6px;}
+@media(max-width:700px){.topbar{display:none;}}
+header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--border);}
+.navbar{display:flex; align-items:center; justify-content:space-between; height:70px;}
+.logo{display:flex; align-items:center; gap:9px; font-family:var(--font-d); font-weight:800; font-size:20px; color:var(--navy);}
+.logo .mark{width:30px;height:30px; border-radius:8px; background:var(--orange); display:flex; align-items:center; justify-content:center;}
+.logo .mark svg{width:16px;height:16px;}
+.navlinks{display:flex; gap:28px; align-items:center;}
+.navlinks a{font-size:14px; color:var(--text); font-weight:500;padding: 20px 0;}
+.navlinks a:hover{color:#FF6A1A;}
+.navcta{display:flex; gap:12px; align-items:center;}
+.hamburger{display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; padding:6px;}
+.hamburger span{width:22px; height:2px; background:var(--navy);}
+@media(max-width:920px){.navlinks{display:none;} .navcta .btn-outline{display:none;} .hamburger{display:flex;}}
+
+/* ===== HERO ===== */
+.hero-wrap{position:relative;}
+.hero{
+  position:relative; overflow:hidden;
+}
+.hero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
+.hero-overlay{position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(10,19,48,.5), rgba(10,19,48,.68));}
+.hero-content{position:relative; z-index:2; text-align:center; max-width:820px; margin:0 auto; padding:60px 24px 80px;}
+.hero-content h1{font-size:clamp(32px,5vw,54px); color:#fff;}
+.hero-content h1 .accent{color:var(--orange);}
+.hero-content p.lead{color:rgba(255,255,255,.88); font-size:17px; max-width:560px; margin:16px auto 0;}
+.badge.on-video{background:rgba(255,106,26,.16); border-color:rgba(255,106,26,.4); color:#FF9856;}
+.btn-outline.on-video{border-color:rgba(255,255,255,.45); color:#fff; background:rgba(255,255,255,.06);}
+.btn-outline.on-video:hover{border-color:#fff; background:rgba(255,255,255,.12);}
+.hero-ctas{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; justify-content:center;}
+.hero-trust{display:flex; gap:24px; flex-wrap:wrap; margin-top:32px; justify-content:center;}
+.hero-trust .item{display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(255,255,255,.85); font-weight:500;}
+.hero-trust .item svg{width:16px;height:16px; stroke:var(--orange); flex-shrink:0;}
+
+/* ===== HERO FLOATING STATS CARD ===== */
+.hero-stats-float{
+  position:absolute; left:50%; bottom:-64px; transform:translateX(-50%); z-index:3;
+  background:#fff; border-radius:18px; box-shadow:0 24px 60px rgba(16,24,64,.18);
+  padding:26px 34px; display:flex; align-items:center; justify-content:space-between; gap:32px;
+  width:min(1060px,92vw);
+}
+.hsf-item{display:flex; align-items:center; gap:12px;}
+.hsf-icon{width:44px;height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.hsf-icon svg{width:20px;height:20px; stroke:#fff;}
+.hsf-n{font-family:var(--font-d); font-weight:800; font-size:21px; color:var(--navy); line-height:1.1;}
+.hsf-l{font-size:12.5px; color:var(--muted); margin-top:2px; white-space:nowrap;}
+@media(max-width:900px){
+  .hero-stats-float{flex-wrap:wrap; row-gap:22px; padding:24px; bottom:-110px;}
+  .hsf-item{flex:0 0 45%;}
+}
+@media(max-width:520px){
+  .hero-content{padding:120px 20px 190px;}
+  .hsf-l{white-space:normal;}
+}
+.hero-spacer{height:96px;}
+@media(max-width:900px){.hero-spacer{height:190px;}}
+@media(max-width:520px){.hero-spacer{height:210px;}}
+
+/* ===== PILLARS ===== */
+.pillars-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+@media(max-width:760px){.pillars-grid{grid-template-columns:1fr;}}
+.pillar-card{background:#fff; border:1px solid var(--border); border-top:4px solid var(--c); border-radius:var(--r); padding:30px; box-shadow:0 1px 3px rgba(16,24,64,.04);}
+.pillar-top{display:flex; align-items:center; gap:14px; margin-bottom:16px;}
+.pillar-icon{width:48px;height:48px; border-radius:10px; background:var(--c); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.pillar-icon svg{width:24px;height:24px; stroke:#fff;}
+.pillar-card p.desc{font-size:14.5px; margin-bottom:18px;}
+.pillar-list{margin-bottom:20px;}
+.pillar-list li{font-size:13.5px; color:var(--text); padding:7px 0; display:flex; gap:9px; align-items:flex-start;}
+.pillar-list li svg{width:14px;height:14px; stroke:var(--c); flex-shrink:0; margin-top:3px;}
+.pillar-cta{font-size:13.5px; color:var(--c); font-weight:700; display:inline-flex; align-items:center; gap:6px;}
+
+/* ===== SECTORS ===== */
+.sectors-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+@media(max-width:900px){.sectors-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.sectors-grid{grid-template-columns:1fr;}}
+.sector-card{background:#fff; border:1px solid var(--border); padding:26px; border-radius:var(--r); transition:box-shadow .15s, transform .15s;}
+.sector-card:hover{box-shadow:0 12px 28px rgba(16,24,64,.08); transform:translateY(-2px);}
+.sector-icon{width:46px;height:46px; border-radius:10px; background:#FFF1E8; display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+.sector-icon svg{width:22px;height:22px; stroke:var(--orange); stroke-width:1.8;}
+.sector-card h4{font-size:16.5px; margin-bottom:8px;}
+.sector-card p{font-size:13.5px; margin-bottom:14px;}
+.sector-tags{display:flex; gap:8px; flex-wrap:wrap;}
+.sector-tags span{font-size:11px; font-weight:600; color:var(--navy); background:var(--grey-bg); padding:5px 10px; border-radius:6px;}
+
+/* ===== WHY FLAPONE (dark) ===== */
+.trust-band{background:var(--grey-bg); color:var(--text);}
+.trust-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:8px;}
+@media(max-width:760px){.trust-grid{grid-template-columns:1fr;}}
+.trust-card{background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:26px; box-shadow:0 1px 3px rgba(16,24,64,.04);}
+.trust-card .ti{width:42px;height:42px; border-radius:9px; background:rgba(255,106,26,.14); display:flex; align-items:center; justify-content:center; margin-bottom:14px;}
+.trust-card .ti svg{width:21px;height:21px; stroke:var(--orange);}
+.trust-card h4{color:var(--navy); font-size:16px; margin-bottom:8px;}
+.trust-card p{font-size:13.5px; color:var(--muted);}
+.trust-band .btn-primary{margin-top:34px;}
+
+/* ===== QUOTE STEPPER ===== */
+.stepper-panel{background:#fff; border:1px solid var(--border); border-radius:16px; padding:36px; box-shadow:0 8px 30px rgba(16,24,64,.06);}
+.stepper-top{display:flex; justify-content:space-between; margin-bottom:32px; position:relative;}
+.stepper-top::before{content:""; position:absolute; top:17px; left:34px; right:34px; height:2px; background:var(--border); z-index:0;}
+.step-node{display:flex; flex-direction:column; align-items:center; gap:8px; position:relative; z-index:1; background:#fff; padding:0 6px;}
+.step-node .circ{width:36px;height:36px; border-radius:50%; background:var(--grey-bg); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:var(--font-d); font-weight:700; font-size:14px; color:var(--muted);}
+.step-node.active .circ{background:var(--orange); border-color:var(--orange); color:#fff;}
+.step-node span{font-size:12px; font-weight:600; color:var(--muted);}
+.step-node.active span{color:var(--navy);}
+.stepper-body h4{margin-bottom:6px;}
+.stepper-body p{font-size:13.5px; margin-bottom:22px;}
+.opt-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:26px;}
+@media(max-width:640px){.opt-grid{grid-template-columns:repeat(2,1fr);}}
+.opt-tile{border:1.5px solid var(--border); border-radius:10px; padding:16px 12px; text-align:center; cursor:pointer; transition:all .15s;}
+.opt-tile.active{border-color:var(--orange); background:#FFF6F0;}
+.opt-tile svg{width:24px;height:24px; margin:0 auto 8px; stroke:var(--navy);}
+.opt-tile.active svg{stroke:var(--orange);}
+.opt-tile span{font-size:13px; font-weight:600;}
+.stepper-foot{display:flex; justify-content:space-between; align-items:center;}
+.stepper-foot .note{font-size:12.5px; color:var(--muted);}
+
+/* ===== CONFIGURATOR ===== */
+.config-panel{background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; display:grid; grid-template-columns:1.4fr 1fr; box-shadow:0 8px 30px rgba(16,24,64,.06);}
+@media(max-width:820px){.config-panel{grid-template-columns:1fr;}}
+.config-left{padding:32px; border-right:1px solid var(--border);}
+@media(max-width:820px){.config-left{border-right:none; border-bottom:1px solid var(--border);}}
+.config-group{margin-bottom:28px;}
+.config-group:last-child{margin-bottom:0;}
+.config-group .gh{font-size:13px; font-weight:700; color:var(--navy); margin-bottom:12px; display:flex; justify-content:space-between;}
+.config-group .gh span{font-weight:500; color:var(--muted); font-size:12px;}
+.opt-row{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+@media(max-width:480px){.opt-row{grid-template-columns:1fr;}}
+.opt{border:1.5px solid var(--border); border-radius:10px; padding:14px 16px; cursor:pointer; transition:all .15s;}
+.opt.active{border-color:var(--orange); background:#FFF6F0;}
+.opt b{display:block; font-size:14px; margin-bottom:2px;}
+.opt span{font-size:12px; color:var(--muted);}
+.config-right{background:var(--navy); color:#fff; padding:30px; display:flex; flex-direction:column;}
+.config-right h4{color:#fff; font-size:13px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:20px;}
+.summary-row{display:flex; justify-content:space-between; font-size:13.5px; padding:11px 0; border-bottom:1px solid var(--navy-line); color:#B9C1E0;}
+.summary-row b{color:#fff; font-weight:600;}
+.summary-total{display:flex; justify-content:space-between; align-items:center; padding-top:18px; margin-top:6px;}
+.summary-total .lbl{font-size:12.5px; color:#8E96B8;}
+.summary-total .amt{font-family:var(--font-d); font-size:24px; font-weight:800; color:#fff;}
+.summary-total .amt .gst{font-size:12px; color:#8E96B8; font-weight:500;}
+.config-right .btn{margin-top:22px; width:100%;}
+.config-note{font-size:11.5px; color:#6E7699; margin-top:14px; line-height:1.5;}
+
+/* ===== MARKETPLACE ===== */
+.mp-head-row{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:28px; flex-wrap:wrap; gap:16px;}
+.mp-tabs{display:flex; gap:8px; flex-wrap:wrap;}
+.mp-tab{font-size:13px; font-weight:600; padding:9px 16px; border:1.5px solid var(--border); border-radius:20px; cursor:pointer; background:#fff; color:var(--muted);}
+.mp-tab.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+.mp-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+@media(max-width:960px){.mp-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.mp-grid{grid-template-columns:1fr;}}
+.mp-card{background:#fff; border:1px solid var(--border); border-radius:var(--r); overflow:hidden; transition:box-shadow .15s;}
+.mp-card:hover{box-shadow:0 10px 26px rgba(16,24,64,.08);}
+.mp-thumb{aspect-ratio:4/3; background:linear-gradient(135deg,#F6F7FB,#EBEDF6); display:flex; align-items:center; justify-content:center; position:relative;}
+.mp-thumb svg{width:50px; height:50px; stroke:#AEB4CF; stroke-width:1.3;}
+.mp-badge{position:absolute; top:10px; left:10px; font-size:10.5px; font-weight:700; padding:5px 10px; border-radius:20px; color:#fff;}
+.mp-body{padding:16px;}
+.mp-stars{color:var(--orange); font-size:12px; margin-bottom:6px;}
+.mp-body h4{font-size:14.5px; margin-bottom:6px;}
+.mp-spec{font-size:12px; color:var(--muted); margin-bottom:12px;}
+.mp-price-row{display:flex; justify-content:space-between; align-items:center;padding-top: 12px;     border-top: 1px solid var(--border)}
+.mp-price{font-family:var(--font-d); font-weight:800; font-size:16px;}
+.mp-price .gst{font-size:10.5px; color:var(--muted); font-weight:400; display:block;}
+.mp-add{font-size:12px; font-weight:700; color:#fff; background:var(--orange); padding:8px 14px; border-radius:6px; border:none; cursor:pointer;}
+.mp-add:hover{background:var(--orange-dark);}
+
+/* ===== CASE STUDIES ===== */
+.case-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+@media(max-width:820px){.case-grid{grid-template-columns:1fr;}}
+.case-card{background:#fff; border:1px solid var(--border); border-radius:16px; padding:30px; box-shadow:0 1px 3px rgba(16,24,64,.04);}
+.case-tag{display:inline-block; font-size:11px; font-weight:700; color:var(--blue); background:#EEF2FE; padding:5px 12px; border-radius:20px; margin-bottom:14px; text-transform:uppercase; letter-spacing:.04em;}
+.case-card h4{font-size:19px; margin-bottom:10px;}
+.case-card p.desc{font-size:14px; margin-bottom:22px;}
+.case-metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding-top:20px; border-top:1px solid var(--border);}
+.case-metrics .mn{font-family:var(--font-d); font-weight:800; font-size:19px; color:var(--navy);}
+.case-metrics .ml{font-size:10.5px; color:var(--muted); margin-top:3px;}
+.case-link{margin-top:20px; display:inline-flex; align-items:center; gap:6px; font-size:13.5px; color:var(--navy); font-weight:700;}
+@media(max-width:480px){.case-metrics{grid-template-columns:repeat(2,1fr); row-gap:16px;}}
+
+/* ===== TRAINING CENTERS ===== */
+.centers-panel{display:grid; grid-template-columns:.85fr 1.15fr; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(16,24,64,.04);}
+@media(max-width:820px){.centers-panel{grid-template-columns:1fr;}}
+.centers-list{background:var(--grey-bg);}
+.center-item{padding:18px 24px; border-bottom:1px solid var(--border); cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
+.center-item.active{background:rgba(255,106,26,.1); border-left:3px solid var(--orange);}
+.center-item .cname{color:var(--navy); font-size:14.5px; font-weight:600;}
+.center-item .ctag{font-size:11px; color:var(--muted); font-weight:500;}
+.center-item.active .ctag{color:var(--orange);}
+.center-detail{background:#fff; padding:32px; color:var(--text);}
+.center-detail .addr{font-size:13.5px; color:var(--muted); margin-bottom:24px;}
+.center-facilities{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+@media(max-width:480px){.center-facilities{grid-template-columns:1fr;}}
+.facility{display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--text); padding:5px 0; border-bottom:1px solid var(--border);}
+.facility svg{width:15px;height:15px; stroke:var(--orange); flex-shrink:0;}
+
+/* ===== RECOGNITION ===== */
+.recog-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+@media(max-width:820px){.recog-row{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.recog-row{grid-template-columns:1fr;}}
+.recog-item{border:1px solid var(--border); border-radius:var(--r); padding:24px; background:#fff; text-align:center;}
+.recog-item .ri{width:44px;height:44px; border-radius:10px; background:#FFF1E8; display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
+.recog-item .ri svg{width:22px;height:22px; stroke:var(--orange);}
+.recog-item .yr{font-size:11px; color:var(--muted); font-weight:600; margin-bottom:6px;}
+.recog-item h4{font-size:14.5px; margin-bottom:6px;}
+.recog-item p{font-size:12.5px;}
+
+/* ===== TESTIMONIALS ===== */
+.testi-band{background:var(--grey-bg); color:var(--text);}
+.testi-card{max-width:980px; margin:0 auto; text-align:center; background:#fff; border:1px solid var(--border); border-radius:16px; padding:25px 30px; box-shadow:0 10px 26px rgba(16,24,64,.06);}
+.testi-stars{color:var(--orange); font-size:20px; letter-spacing:3px; margin-bottom:22px;}
+.testi-quote{font-family:var(--font-d); font-size:clamp(17px,2.2vw,21px); font-weight:600; line-height:1.55; color:var(--navy);}
+.testi-person{display:flex; align-items:center; justify-content:center; gap:12px; margin-top:26px;}
+.testi-avatar{width:44px;height:44px; border-radius:50%; background:var(--orange); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; font-size:14px;}
+.testi-person .pname{font-size:14.5px; font-weight:700; text-align:left;}
+.testi-person .prole{font-size:12.5px; color:var(--muted); text-align:left;}
+.testi-dots{display:flex; gap:8px; justify-content:center; margin-top:28px;}
+.testi-dots span{width:8px; height:8px; border-radius:50%; background:var(--border); cursor:pointer;}
+.testi-dots span.active{background:var(--orange); width:22px; border-radius:4px;}
+
+/* ===== INSIGHTS ===== */
+.insights-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+@media(max-width:760px){.insights-grid{grid-template-columns:1fr;}}
+.insight-card{display:grid; grid-template-columns:200px 1fr; gap:20px; border:1px solid var(--border); border-radius:var(--r); overflow:hidden; background:#fff;}
+@media(max-width:560px){.insight-card{grid-template-columns:1fr;}}
+.insight-thumb{background:linear-gradient(135deg,var(--navy),var(--navy-2)); display:flex; align-items:center; justify-content:center; min-height:140px;}
+.insight-thumb svg{width:32px;height:32px; stroke:var(--orange);}
+.insight-body{padding:20px 20px 20px 0;}
+@media(max-width:560px){.insight-body{padding:20px;}}
+.insight-body .cat{font-size:11px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.04em;}
+.insight-body h4{font-size:16px; margin:8px 0; line-height:1.4;}
+.insight-meta{font-size:12px; color:var(--muted);}
+
+/* ===== FINAL CTA ===== */
+.final-cta{
+  background:#fff; color:var(--text); border-radius:20px; padding:56px 40px; text-align:center; border:1px solid var(--border);
+  background-image:radial-gradient(ellipse 500px 300px at 50% 0%, rgba(255,106,26,.14), transparent 70%), linear-gradient(135deg,#ffffff,var(--grey-bg));
+}
+.final-cta h2{color:var(--navy); margin-bottom:14px;}
+.final-cta p{max-width:520px; margin:0 auto 30px; color:var(--muted);}
+.final-cta .btns{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:26px;}
+.final-cta .contact-line{font-size:13px; color:var(--muted);}
+
+/* ===== FOOTER ===== */
+footer{background:var(--grey-bg); color:var(--muted); padding:64px 0 26px; border-top:1px solid var(--border);}
+.foot-grid{display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:30px; padding-bottom:44px; border-bottom:1px solid var(--border);}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr;}}
+.foot-brand p{font-size:13px; color:var(--muted); margin:14px 0 18px; max-width:280px;}
+.foot-col h5{font-family:var(--font-d); font-size:13px; letter-spacing:.03em; color:var(--navy); margin-bottom:16px;}
+.foot-col a{display:block; font-size:13.5px; color:var(--muted); margin-bottom:10px;}
+.foot-col a:hover{color:var(--navy);}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:22px; font-size:12.5px; color:var(--muted); flex-wrap:wrap; gap:12px;}
+
+/* mobile sticky CTA */
+.mobile-cta{display:none; position:fixed; bottom:0; left:0; right:0; z-index:90; background:#fff; border-top:1px solid var(--border); padding:12px 16px; align-items:center; gap:10px; box-shadow:0 -4px 16px rgba(16,24,64,.08);}
+@media(max-width:640px){.mobile-cta{display:flex;} body{padding-bottom:70px;}}
+.mobile-cta .btn{flex:1;}
+
+.skip{position:absolute; left:-999px;}
+.skip:focus{left:16px; top:16px; z-index:200; background:#fff; padding:10px; border-radius:4px; color:var(--navy);}
+a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visible{outline:2px solid var(--orange); outline-offset:2px;}
+
+/* ===== NAV MEGA-DROPDOWN ===== */
+.nav-item{position:relative; display:flex; align-items:center;}
+.nav-item > a{display:flex; align-items:center; gap:5px;}
+.nav-item .chev{width:10px;height:10px; transition:transform .15s;}
+.nav-item:hover .chev, .nav-item:focus-within .chev{transform:rotate(180deg);}
+.mega-dd{
+  position:absolute; top:calc(65% + 22px); left:50%; transform:translateX(-50%) translateY(6px);
+  width:400px; background:#fff; border:1px solid var(--border); border-radius:14px;
+  box-shadow:0 24px 54px rgba(10,19,48,.22); padding:16px; display:grid; grid-template-columns:140px 1fr; gap:14px;
+  opacity:0; visibility:hidden; transition:opacity .18s ease, transform .18s ease; z-index:50;
+}
+.nav-item:hover .mega-dd, .nav-item:focus-within .mega-dd{opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);}
+.dd-image{border-radius:10px; overflow:hidden; min-height:150px; display:flex; align-items:flex-end; padding:12px; position:relative;}
+.dd-image svg{position:absolute; inset:0; width:100%; height:100%;}
+.dd-image span{position:relative; z-index:1; color:#fff; font-size:12px; text-align:center; font-weight:700; border-radius:20px; backdrop-filter:blur(4px); line-height:1.3;}
+.dd-links{display:flex; flex-direction:column; justify-content:center;}
+.dd-links a{display:block; padding:9px 8px; border-radius:8px; font-size:13.5px; color:var(--navy); font-weight:700;}
+.dd-links a:hover{background:var(--gray-bg);}
+.dd-links .dd-desc{font-size:11.5px; color:var(--muted); font-weight:400; display:block; margin-top:1px;}
+@media(max-width:920px){.mega-dd{display:none !important;}}
+
+/* ===== HERO FLYING DRONES ===== */
+.drone-fly{position:absolute; width:200px; opacity:.35; z-index:0; animation:flyPath 16s linear infinite;}
+@keyframes flyPath{
+  0%{ top:62%; left:-10%; transform:rotate(-4deg) scale(.85); opacity:0; }
+  8%{ opacity:.55; }
+  50%{ top:12%; left:52%; transform:rotate(3deg) scale(1.05); opacity:.5; }
+  92%{ opacity:.5; }
+  100%{ top:6%; left:108%; transform:rotate(6deg) scale(1.15); opacity:0; }
+}
+.drone-fly .rotor{animation:spin .35s linear infinite; transform-origin:center;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media(prefers-reduced-motion:reduce){.drone-fly{animation:none; top:20%; left:60%; opacity:.35;} .drone-fly .rotor{animation:none;}}
+@media(max-width:700px){.drone-fly{width:80px;}}
+
+/* ===== PILLAR HIGHLIGHT GRID ===== */
+.highlight-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:22px;}
+@media(max-width:420px){.highlight-grid{grid-template-columns:1fr;}}
+.highlight-chip{display:flex; align-items:center; gap:8px; background:var(--grey-bg); border-radius:8px; padding:9px 10px;}
+.highlight-chip .hc-ico{width:20px;height:20px; border-radius:6px; background:var(--c); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.highlight-chip .hc-ico svg{width:11px;height:11px; stroke:#fff; stroke-width:3;}
+.highlight-chip span{font-size:12px; font-weight:700; color:var(--navy); line-height:1.25;}
+
+/* ===== SECTOR TAGS v2 ===== */
+.sector-tags{display:flex; gap:8px; flex-wrap:wrap;}
+.sector-tags span{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11.5px; font-weight:700; color:var(--orange-dark);
+  background:#FFF1E8; border:1px solid #FFDCC2;
+  padding:6px 12px; border-radius:20px; letter-spacing:.01em;
+}
+.sector-tags span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--orange); flex-shrink:0;}
+
+/* ===== TESTIMONIAL SLIDER v2 ===== */
+.testi-slider{display:flex; align-items:center; gap:18px; max-width:960px; margin:0 auto;}
+.testi-arrow{width:42px;height:42px; border-radius:50%; border:1px solid var(--border); background:#fff; color:var(--navy); font-size:20px; cursor:pointer; flex-shrink:0; transition:all .15s; line-height:1; box-shadow:0 1px 3px rgba(16,24,64,.04);}
+.testi-arrow:hover{background:var(--orange); border-color:var(--orange); color:#fff;}
+@media(max-width:640px){.testi-arrow{width:34px;height:34px; font-size:16px;}}
+.testi-quote-icon{font-family:var(--font-d); font-size:48px; color:var(--orange); opacity:.4; line-height:1; margin-bottom:4px;}
+.testi-fade{animation:testiFade .45s ease;}
+@keyframes testiFade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+.testi-progress{max-width:760px; margin:14px auto 0; height:2px; background:var(--border); border-radius:2px; overflow:hidden;}
+.testi-progress-bar{height:100%; width:0%; background:var(--orange); animation:testiProgress 6s linear infinite;}
+@keyframes testiProgress{from{width:0%;} to{width:100%;}}
+
+/* ===== INSIGHTS / BLOG v2 ===== */
+.insights-grid{grid-template-columns:repeat(3,1fr);}
+@media(max-width:900px){.insights-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.insights-grid{grid-template-columns:1fr;}}
+.insight-card{background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden; display:block; transition:transform .2s, box-shadow .2s;}
+.insight-card:hover{transform:translateY(-4px); box-shadow:0 18px 36px rgba(16,24,64,.1);}
+.insight-thumb{aspect-ratio:16/10; min-height:0; background:linear-gradient(135deg,var(--navy),var(--navy-2)); display:flex; align-items:center; justify-content:center; position:relative;}
+.insight-thumb svg{width:34px;height:34px; stroke:var(--orange);}
+.it-cat{position:absolute; top:12px; left:12px; background:rgba(255,255,255,.95); color:var(--navy); font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:20px; text-transform:uppercase; letter-spacing:.03em;}
+.insight-body{padding:20px;}
+.insight-body h4{font-size:16px; margin-bottom:10px; line-height:1.4;}
+.insight-body .excerpt{font-size:13px; color:var(--muted); margin-bottom:16px;}
+.insight-meta-row{display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid var(--border);}
+.insight-author{display:flex; align-items:center; gap:8px;}
+.ia-avatar{width:26px;height:26px; border-radius:50%; background:var(--orange); color:#fff; font-size:10.5px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+.insight-author span{font-size:12px; font-weight:600; color:var(--navy);}
+.insight-read{font-size:12px; font-weight:700; color:var(--orange); display:flex; align-items:center; gap:4px;}
+.insight-read svg{width:12px;height:12px;}
+
+/* ===== ABOUT SECTION ===== */
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
+.about-copy p{font-size:15px; margin-top:14px;}
+.about-stats{display:flex; gap:34px; margin-top:28px; flex-wrap:wrap;}
+.about-stats .as-n{font-family:var(--font-d); font-size:26px; font-weight:800; color:var(--orange);}
+.about-stats .as-l{font-size:12.5px; color:var(--muted); font-weight:600;}
+.about-panel{background:var(--grey-bg); border:1px solid var(--border); border-radius:16px; padding:28px;}
+.about-panel .gh{font-size:12px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.05em; margin-bottom:18px;}
+.value-row{display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;}
+.value-row:last-child{margin-bottom:0;}
+.value-icon{width:36px;height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.value-icon svg{width:18px;height:18px; stroke:#fff;}
+.value-row b{display:block; font-size:14.5px; color:var(--navy);}
+.value-row span{font-size:13px; color:var(--muted);}
+
+/* ===== SUCCESS STORIES (new) ===== */
+.success-band{background:var(--grey-bg); position:relative; overflow:hidden;}
+.success-band::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 15% 0%, rgba(255,106,26,.12), transparent 65%);pointer-events:none;}
+.success-slider{display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; scrollbar-width:none;}
+.success-slider::-webkit-scrollbar{display:none;}
+.success-card{
+  scroll-snap-align:start; flex:0 0 auto; width:min(560px,86vw);
+  background:#fff; border:1px solid var(--border); border-radius:22px;
+  padding:36px; position:relative; overflow:hidden; box-shadow:0 10px 26px rgba(16,24,64,.06);
+}
+.success-card .sc-glow{position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(255,106,26,.16),transparent 70%); pointer-events:none;}
+.success-card .sc-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
+.success-card .sc-sector{display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--orange-dark); background:#FFF1E8; border:1px solid #FFDCC2; padding:6px 12px; border-radius:20px;}
+.success-card .sc-days{font-size:12px; color:var(--muted); font-weight:600;}
+.success-card h4{color:var(--navy); font-size:19px; margin-bottom:10px; line-height:1.35;}
+.success-card p.sc-desc{font-size:13.5px; color:var(--muted); margin-bottom:24px;}
+.success-metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding-top:22px; border-top:1px solid var(--border); margin-bottom:22px;}
+.success-metrics .mn{font-family:var(--font-d); font-weight:800; font-size:20px; color:var(--navy);}
+.success-metrics .ml{font-size:10px; color:var(--muted); margin-top:3px; line-height:1.3;}
+@media(max-width:480px){.success-metrics{grid-template-columns:repeat(2,1fr); row-gap:14px;}}
+.success-foot{display:flex; align-items:center; justify-content:space-between;}
+.success-client{display:flex; align-items:center; gap:10px;}
+.sc-avatar{width:34px;height:34px; border-radius:50%; background:var(--orange); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; font-size:12px; flex-shrink:0;}
+.success-client .scn{font-size:12.5px; font-weight:700; color:var(--navy);}
+.success-client .scr{font-size:11px; color:var(--muted);}
+.success-link{font-size:12.5px; font-weight:700; color:var(--orange); display:inline-flex; align-items:center; gap:5px; flex-shrink:0;}
+.success-nav{display:flex; justify-content:flex-end; gap:10px; margin-top:26px;}
+.success-nav button{width:42px;height:42px; border-radius:50%; border:1px solid var(--border); background:#fff; color:var(--navy); font-size:19px; cursor:pointer; transition:all .15s; line-height:1; box-shadow:0 1px 3px rgba(16,24,64,.04);}
+.success-nav button:hover{background:var(--orange); border-color:var(--orange); color:#fff;}
+
+/* ===== SERVICE DETAIL PAGE ===== */
+.svc-hero{background:linear-gradient(180deg,var(--navy),var(--navy-2)); color:#fff; position:relative; overflow:hidden; padding:44px 0 60px;}
+.svc-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 640px 480px at 85% 0%, rgba(255,106,26,.20), transparent 68%);pointer-events:none;}
+.svc-breadcrumb{display:flex; align-items:center; gap:8px; font-size:12.5px; color:#8E96B8; margin-bottom:20px; position:relative; z-index:1;}
+.svc-breadcrumb a{color:#B9C1E0;}
+.svc-breadcrumb a:hover{color:#fff;}
+.svc-hero-inner{display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center; position:relative; z-index:1;}
+@media(max-width:960px){.svc-hero-inner{grid-template-columns:1fr;}}
+.svc-hero h1{color:#fff; font-size:clamp(30px,4.4vw,44px); margin-bottom:16px;}
+.svc-hero p.lead{color:#B9C1E0; font-size:16px; max-width:520px; margin-bottom:26px;}
+.svc-hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+.svc-hero-card{background:rgba(255,255,255,.04); border:1px solid var(--navy-line); border-radius:16px; padding:26px;}
+.svc-hero-card .shc-row{display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--navy-line); font-size:13.5px;}
+.svc-hero-card .shc-row:last-child{border-bottom:none;}
+.svc-hero-card .shc-row span:first-child{color:#8E96B8;}
+.svc-hero-card .shc-row span:last-child{color:#fff; font-weight:700;}
+
+.svc-overview{display:grid; grid-template-columns:1.3fr .7fr; gap:50px; align-items:start;}
+@media(max-width:860px){.svc-overview{grid-template-columns:1fr;}}
+.svc-overview .ov-copy p{font-size:15px; margin-bottom:14px;}
+.svc-side-card{background:var(--grey-bg); border:1px solid var(--border); border-radius:16px; padding:26px; position:sticky; top:90px;}
+.svc-side-card h4{font-size:14px; margin-bottom:16px;}
+.svc-side-list li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--text); padding:8px 0;}
+.svc-side-list li svg{width:15px;height:15px; stroke:var(--orange); flex-shrink:0; margin-top:2px;}
+
+.feat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media(max-width:860px){.feat-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr;}}
+.feat-card{background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:26px;}
+.feat-card .fi{width:44px;height:44px; border-radius:10px; background:#FFF1E8; display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+.feat-card .fi svg{width:21px;height:21px; stroke:var(--orange);}
+.feat-card h4{font-size:15.5px; margin-bottom:8px;}
+.feat-card p{font-size:13.5px;}
+
+.app-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+@media(max-width:900px){.app-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.app-grid{grid-template-columns:1fr;}}
+.app-card{border:1px solid var(--border); border-radius:var(--r); padding:22px; text-align:center; background:#fff;}
+.app-card .ai{width:40px;height:40px; border-radius:9px; background:var(--grey-bg); display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
+.app-card .ai svg{width:19px;height:19px; stroke:var(--navy);}
+.app-card h4{font-size:14px; margin-bottom:6px;}
+.app-card p{font-size:12.5px;}
+
+.gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,160px); gap:14px;}
+@media(max-width:820px){.gallery-grid{grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,150px);}}
+.gallery-item{border-radius:12px; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center;}
+.gallery-item svg{width:26px;height:26px; stroke:rgba(255,255,255,.7);}
+.gallery-item:nth-child(1){grid-column:span 2; grid-row:span 2;}
+@media(max-width:820px){.gallery-item:nth-child(1){grid-column:span 2; grid-row:span 1;}}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-item:first-child{border-top:1px solid var(--border);}
+.faq-q{display:flex; align-items:center; justify-content:space-between; padding:20px 4px; cursor:pointer; gap:16px;}
+.faq-q h4{font-size:15px;}
+.faq-q .fq-ico{width:22px;height:22px; border-radius:50%; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:transform .2s, border-color .2s;}
+.faq-item.open .fq-ico{transform:rotate(45deg); border-color:var(--orange); background:var(--orange);}
+.faq-item.open .fq-ico svg{stroke:#fff;}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+.faq-a p{font-size:13.5px; padding:0 4px 20px; max-width:80%;}
+.faq-item.open .faq-a{max-height:200px;}
+
+.other-svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media(max-width:820px){.other-svc-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.other-svc-grid{grid-template-columns:1fr;}}
+.other-svc-card{background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:24px; transition:box-shadow .15s, transform .15s;}
+.other-svc-card:hover{box-shadow:0 12px 28px rgba(16,24,64,.08); transform:translateY(-2px);}
+.other-svc-card .osi{width:44px;height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+.other-svc-card .osi svg{width:21px;height:21px; stroke:#fff;}
+.other-svc-card h4{font-size:15.5px; margin-bottom:8px;}
+.other-svc-card p{font-size:13px; margin-bottom:16px;}
+.other-svc-card a{font-size:13px; font-weight:700; color:var(--navy); display:inline-flex; align-items:center; gap:6px;}
+
+@media (prefers-reduced-motion: reduce){*{transition:none !important; scroll-behavior:auto !important;}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="left">
+      <span>📞 +91 9899-963-544</span>
+      <span>✉️ info@flapone.com</span>
+    </div>
+    <div class="left">
+      <span>DGCA Approved RPTO : 12/2024 | 13/2023</span>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap navbar">
+    <div class="logo"><span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>FlapOne</div>
+    <nav class="navlinks">
+      <div class="nav-item">
+        <a href="#training">Training <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="mega-dd">
+          <div class="dd-image" style="background:linear-gradient(135deg,#2F5FDB,#152a70);">
+            <svg viewBox="0 0 120 100" fill="none" opacity=".35"><path d="M60 22 L98 40 L60 58 L22 40 Z" stroke="#fff" stroke-width="2.5"/><path d="M34 46v18c0 9 12 16 26 16s26-7 26-16V46" stroke="#fff" stroke-width="2.5"/></svg>
+            <span>DGCA Pilot Training</span>
+          </div>
+          <div class="dd-links">
+            <a href="#training">RPC Certification<span class="dd-desc">7–10 day course, exam included</span></a>
+            <a href="#centres">Training Centres<span class="dd-desc">6+ locations nationwide</span></a>
+            <a href="#training">Corporate Batches<span class="dd-desc">On-site team certification</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#daas">DaaS <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="mega-dd">
+          <div class="dd-image" style="background:linear-gradient(135deg,#FF6A1A,#8f3705);">
+            <svg viewBox="0 0 120 100" fill="none" opacity=".35"><circle cx="30" cy="30" r="12" stroke="#fff" stroke-width="2.5"/><circle cx="90" cy="30" r="12" stroke="#fff" stroke-width="2.5"/><circle cx="30" cy="68" r="12" stroke="#fff" stroke-width="2.5"/><circle cx="90" cy="68" r="12" stroke="#fff" stroke-width="2.5"/><rect x="48" y="38" width="24" height="20" rx="4" stroke="#fff" stroke-width="2.5"/></svg>
+            <span>Drone-as-a-Service</span>
+          </div>
+          <div class="dd-links">
+            <a href="#daas">Survey &amp; Mapping<span class="dd-desc">Orthomosaic reports in 72h</span></a>
+            <a href="#quote">Get a DaaS Quote<span class="dd-desc">Response within 24 hours</span></a>
+            <a href="#sectors">Sector Solutions<span class="dd-desc">Agriculture, mining &amp; more</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#manufacturing">Manufacturing <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="mega-dd">
+          <div class="dd-image" style="background:linear-gradient(135deg,#16A34A,#0a4d24);">
+            <svg viewBox="0 0 120 100" fill="none" opacity=".35"><circle cx="45" cy="50" r="18" stroke="#fff" stroke-width="2.5"/><circle cx="80" cy="35" r="11" stroke="#fff" stroke-width="2.5"/><path d="M45 32v-8M45 68v8M27 50h-8M63 50h8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <span>OEM Manufacturing</span>
+          </div>
+          <div class="dd-links">
+            <a href="#configurator">Custom UAV Configurator<span class="dd-desc">Spec your own airframe</span></a>
+            <a href="#manufacturing">Contract Manufacturing<span class="dd-desc">Prototype to production</span></a>
+            <a href="#manufacturing">Defence &amp; Govt Builds<span class="dd-desc">Spec-compliant units</span></a>
+          </div>
+        </div>
+      </div>
+	  <div class="nav-item">
+        <a href="#sales">Sales <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="mega-dd">
+          <div class="dd-image" style="background:linear-gradient(135deg,#2F5FDB,#152a70);">
+            <svg viewBox="0 0 120 100" fill="none" opacity=".35"><path d="M60 22 L98 40 L60 58 L22 40 Z" stroke="#fff" stroke-width="2.5"/><path d="M34 46v18c0 9 12 16 26 16s26-7 26-16V46" stroke="#fff" stroke-width="2.5"/></svg>
+            <span>DGCA Pilot Training</span>
+          </div>
+          <div class="dd-links">
+            <a href="#training">RPC Certification<span class="dd-desc">7–10 day course, exam included</span></a>
+            <a href="#centres">Training Centres<span class="dd-desc">6+ locations nationwide</span></a>
+            <a href="#training">Corporate Batches<span class="dd-desc">On-site team certification</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="#about">About</a>
+    </nav>
+    <div class="navcta">
+      <a class="btn btn-outline" href="tel:+919899963544">Call us</a>
+      <a class="btn btn-primary" href="#quote">Request Quote</a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<div class="hero-wrap">
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="https://avplinternational.com/header-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="wrap hero-content">
+    <span class="badge on-video">DGCA Approved RPTO</span>
+    <h1 id="heroTitle">Where Innovation <span class="accent">Ascends</span> Beyond Boundaries</h1>
+    <p class="lead" id="heroDesc">Drone Solutions For a Smarter, Greener Tomorrow</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" id="heroCta" href="#quote">Request a DaaS Quote<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a class="btn btn-outline on-video" href="#pillars">View FlapOne Services</a>
+    </div>
+    <div class="hero-trust">
+      <span class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>DGCA-Approved</span>
+      <span class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>GST Invoicing</span>
+      <span class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nationwide Shipping</span>
+    </div>
+  </div>
+</section>
+
+  <div class="hero-stats-float">
+    <div class="hsf-item"><div class="hsf-icon" style="background:var(--orange);"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-width="1.6" stroke-linejoin="round"/></svg></div><div><div class="hsf-n">8,542+</div><div class="hsf-l">Pilots trained</div></div></div>
+    <div class="hsf-item"><div class="hsf-icon" style="background:var(--blue);"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke-width="1.6"/><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7z" stroke-width="1.6"/></svg></div><div><div class="hsf-n">624+</div><div class="hsf-l">Enterprise clients</div></div></div>
+    <div class="hsf-item"><div class="hsf-icon" style="background:var(--green);"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke-width="1.6"/></svg></div><div><div class="hsf-n">6+</div><div class="hsf-l">Training centres</div></div></div>
+    <div class="hsf-item"><div class="hsf-icon" style="background:var(--purple);"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke-width="1.6"/><path d="M8 20h8M12 16v4" stroke-width="1.6"/></svg></div><div><div class="hsf-n">99.4%</div><div class="hsf-l">DGCA pass rate</div></div></div>
+  </div>
+</div>
+
+<div class="hero-spacer"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="badge">About Us</span>
+      <h2>Built By Pilots, Engineers &amp; Compliance Specialists</h2>
+      <p>FlapOne started in 2019 as a two-person Remote Pilot Training Organisation in Delhi. Today we're a DGCA-approved, ISO-certified drone technology company spanning training, enterprise operations, contract manufacturing and nationwide parts supply — built because most vendors could only do one of those things well.</p>
+      <p>We're still run by the people who fly, build and certify the aircraft, not a layer of account managers between you and the work.</p>
+      <div class="about-stats">
+        <div><div class="as-n">2019</div><div class="as-l">Founded in Delhi</div></div>
+        <div><div class="as-n">120+</div><div class="as-l">Team members</div></div>
+        <div><div class="as-n">22</div><div class="as-l">States served</div></div>
+      </div>
+      <a class="btn btn-primary" style="margin-top:30px;" href="#quote">Work With Us</a>
+    </div>
+    <div class="about-panel">
+      <div class="gh">Our Values</div>
+      <div class="value-row">
+        <div class="value-icon" style="background:var(--orange);"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-width="1.6"/></svg></div>
+        <div><b>Safety First</b><span>Every flight is DGCA-permitted and insured before takeoff.</span></div>
+      </div>
+      <div class="value-row">
+        <div class="value-icon" style="background:var(--blue);"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z" stroke-width="1.6"/></svg></div>
+        <div><b>Engineering Depth</b><span>Builds happen on our own floor, not a subcontractor's.</span></div>
+      </div>
+      <div class="value-row">
+        <div class="value-icon" style="background:var(--green);"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M6 21V10l6-6 6 6v11" stroke-width="1.6"/></svg></div>
+        <div><b>Nationwide Access</b><span>Six training centres and pan-India dispatch, not just metros.</span></div>
+      </div>
+      <div class="value-row">
+        <div class="value-icon" style="background:var(--purple);"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke-width="1.6"/><path d="M14 3v5h5" stroke-width="1.6"/></svg></div>
+        <div><b>Documented Outcomes</b><span>Every project closes with a signed report, on request.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section" id="pillars" style="background:var(--grey-bg);">
+  <div class="wrap">
+    <div class="head center">
+      <span class="badge">Four Core Services</span>
+      <h2>Four Pillars of the Aerial Journey</h2>
+      <p>From pilot training to enterprise manufacturing to marketplace — FlapOne covers every stage of the drone journey under one accountable provider.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card" id="daas" style="--c:var(--orange);">
+        <div class="pillar-top"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></div><h3>Drone-as-a-Service</h3></div>
+        <p class="desc">End-to-end drone services for agriculture, inspections, mapping and surveying — insured crews, not just rented aircraft.</p>
+        <div class="highlight-grid">
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Insured flight crews</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>DGCA-permitted</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>72h report turnaround</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Agri spraying ready</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Thermal &amp; RGB capture</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Pan-India coverage</span></div>
+        </div>
+        <a class="pillar-cta" href="#quote">Request DaaS Quote →</a>
+      </div>
+      <div class="pillar-card" id="training" style="--c:var(--blue);">
+        <div class="pillar-top"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="1.6"/><path d="M4 21c1.5-4.5 5-6 8-6s6.5 1.5 8 6" stroke="#fff" stroke-width="1.6"/></svg></div><h3>DGCA Pilot Training</h3></div>
+        <p class="desc">DGCA-approved Remote Pilot Training Organisation, delivering certified courses for small and medium UAS categories.</p>
+        <div class="highlight-grid">
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>RPC certification</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Live flight hours</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>6 city centres</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>99.4% pass rate</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Exam fee included</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Corporate batches</span></div>
+        </div>
+        <a class="pillar-cta" href="#centres">Explore RPTO Courses →</a>
+      </div>
+      <div class="pillar-card" id="manufacturing" style="--c:var(--green);">
+        <div class="pillar-top"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3>OEM Manufacturing</h3></div>
+        <p class="desc">In-house CNC milling, wiring and composite layup for enterprises that need drones built to a custom spec.</p>
+        <div class="highlight-grid">
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>In-house CNC</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Custom payload builds</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Defence spec compliant</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Batch QA reports</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Prototype to scale</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>18–24 day lead time</span></div>
+        </div>
+        <a class="pillar-cta" href="#configurator">View Manufacturing →</a>
+      </div>
+      <div class="pillar-card" id="store" style="--c:var(--purple);">
+        <div class="pillar-top"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="1.5" stroke="#fff" stroke-width="1.6"/><path d="M8 7V5a4 4 0 018 0v2" stroke="#fff" stroke-width="1.6"/></svg></div><h3>Drone &amp; Parts Store</h3></div>
+        <p class="desc">Motors, ESCs, flight controllers, batteries and complete airframes — stocked and dispatched pan-India.</p>
+        <div class="highlight-grid">
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>1,200+ SKUs stocked</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>GST invoiced</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>48h dispatch</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Bulk fleet pricing</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>7-day warranty</span></div>
+          <div class="highlight-chip"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Genuine OEM parts</span></div>
+        </div>
+        <a class="pillar-cta" href="#marketplace">Shop Marketplace →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="section" >
+  <div class="wrap">
+    <div class="head center">
+      <span class="badge">Sectors We Serve</span>
+      <h2>Powering Aerial Operations Across Sectors</h2>
+      <p>From agriculture to defence, FlapOne's drone technology delivers measurable impact across India's most critical industries.</p>
+    </div>
+    <div class="sectors-grid">
+      <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M4 8c4 0 6 2 8 2s4-2 8-2M4 16c4 0 6 2 8 2s4-2 8-2" stroke-linecap="round"/></svg></div><h4>Agriculture</h4><p>Precision spraying, crop health mapping and yield estimation across large land holdings.</p><div class="sector-tags"><span>Crop Spraying</span><span>Yield Mapping</span></div></div>
+      <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21l6-14 3 7 3-5 6 12H3z" stroke-linejoin="round"/></svg></div><h4>Mining</h4><p>Volumetric stockpile measurement, pit monitoring and haul-road condition surveys.</p><div class="sector-tags"><span>Volumetric Analysis</span><span>Site Monitoring</span></div></div>
+      <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6" stroke-linejoin="round"/></svg></div><h4>Construction</h4><p>Site progress tracking, topographic surveys and safety inspection for active builds.</p><div class="sector-tags"><span>Progress Monitoring</span><span>Site Surveys</span></div></div>
+      <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z" stroke-linejoin="round"/></svg></div><h4>Defence</h4><p>Perimeter surveillance and border monitoring for government and defence-approved operators.</p><div class="sector-tags"><span>Surveillance</span><span>Reconnaissance</span></div></div>
+      <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke-linejoin="round"/></svg></div><h4>Energy &amp; Utilities</h4><p>Solar panel thermal inspection and transmission-line corridor monitoring.</p><div class="sector-tags"><span>Thermal Inspection</span><span>Line Monitoring</span></div></div>
+      <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke-linejoin="round"/></svg></div><h4>Government</h4><p>Land record digitisation and public infrastructure asset mapping for municipal bodies.</p><div class="sector-tags"><span>Land Records</span><span>Asset Mapping</span></div></div>
+    </div>
+    <div class="center" style="margin-top:34px;"><a class="btn btn-outline" href="#sectors">Explore Sector Solutions →</a></div>
+  </div>
+</section>
+
+<!-- WHY FLAPONE -->
+<section class="section trust-band">
+  <div class="wrap center">
+	<div class="head center">
+    <span class="badge">Why FlapOne</span>
+    <h2>India's Most Trusted Drone Partner</h2>
+    <p style="max-width:620px; margin:12px auto 0;">We don't just sell drones or train pilots — we deliver end-to-end aerial solutions backed by regulatory approval, manufacturing capability and proven outcomes.</p>
+	</div>
+    <div class="trust-grid">
+      <div class="trust-card"><div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-width="1.6"/></svg></div><h4>DGCA-Approved Authority</h4><p>Our RPTO and Drone Acknowledgement Number are current with DGCA, so certificates and flight permits issue without delay.</p></div>
+      <div class="trust-card"><div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M6 21V10l6-6 6 6v11M10 21v-5h4v5" stroke-width="1.6"/></svg></div><h4>In-House Manufacturing</h4><p>CNC milling, wiring and composite layup happen on our own floor — no third-party contractor between spec and delivery.</p></div>
+      <div class="trust-card"><div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z" stroke-width="1.6"/></svg></div><h4>Certified Pilot Network</h4><p>Every field crew holds an active DGCA Remote Pilot Certificate, verified before each engagement.</p></div>
+      <div class="trust-card"><div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke-width="1.6"/><path d="M14 3v5h5" stroke-width="1.6"/></svg></div><h4>Proven Track Record</h4><p>Every project closes with a signed report — flight logs, coverage area and outcome metrics — on request.</p></div>
+    </div>
+    <a class="btn btn-primary" href="#insights">Learn More About FlapOne</a>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="section" id="daas">
+  <div class="wrap">
+    <div class="head center" style="text-align:left;max-width:100%;margin:0;">
+      <span class="badge" style="margin-bottom: 5px;">DaaS</span>
+    </div>
+    <div class="mp-head-row">
+      <div class="mp-tabs">
+	  <h2>End-to-End Drone Services</h2>
+      </div>
+      <a class="pillar-cta" style="--c:var(--orange);" href="#">View All Services →</a>
+    </div>
+    <div class="mp-grid">
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--green);">Most Popular</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars"></div><h4>Agriculture Done Services</h4><div class="mp-spec">Operated by DGCA-certified Drone Pilots · Advanced Technology · 24x7 Support</div><div class="mp-price-row"><div ><button class="mp-add">Get Quotes</button></div><a class="mc-link" href="service.html">View Details →</a></div></div></div>
+	  <div class="mp-card"><div class="mp-thumb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars"></div><h4>Done Mapping & Surveying Services</h4><div class="mp-spec">Operated by DGCA-certified Drone Pilots · Advanced Technology · 24x7 Support</div><div class="mp-price-row"><div ><button class="mp-add">Get Quotes</button></div><a class="mc-link" href="service.html">View Details →</a></div></div></div>
+	  <div class="mp-card"><div class="mp-thumb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars"></div><h4>Ariel Photography & Videography Done Services</h4><div class="mp-spec">Operated by DGCA-certified Drone Pilots · Advanced Technology · 24x7 Support</div><div class="mp-price-row"><div ><button class="mp-add">Get Quotes</button></div><a class="mc-link" href="service.html">View Details →</a></div></div></div>
+	  <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--green);">Most Popular</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars"></div><h4>Land Survey Done Services</h4><div class="mp-spec">Operated by DGCA-certified Drone Pilots · Advanced Technology · 24x7 Support</div><div class="mp-price-row"><div ><button class="mp-add">Get Quotes</button></div><a class="mc-link" href="service.html">View Details →</a></div></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="training" style="background:var(--grey-bg);">
+  <div class="wrap">
+  <div class="head center" style="text-align:left;max-width:100%;margin:0;">
+      <span class="badge" style="margin-bottom: 5px;">Training</span>
+    </div>
+    <div class="mp-head-row">
+      <div class="mp-tabs">
+	  <h2>Master the Skies with Drone Programs</h2>
+      </div>
+      <a class="pillar-cta" style="--c:var(--orange);" href="#">View All Courses →</a>
+    </div>
+    <div class="mp-grid">
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--green);">DGCA Approved</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (128)</div><h4>Small RPC Training</h4><div class="mp-spec">25 min flight time · 4K gimbal · 6km range</div><div class="mc-foot"><span class="mp-price">₹30,000</span><a class="mc-link" href="#">View Course →</a></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--green);">DGCA Approved</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (94)</div><h4>Medium RPC Training</h4><div class="mp-spec">45 min flight time · RTK GPS · 10km range</div><div class="mc-foot"><span class="mp-price">₹40,000</span><a class="mc-link" href="#">View Course →</a></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--purple);">Most Popular</span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★☆ (61)</div><h4>TTT - Train the Trainer</h4><div class="mp-spec">Dual IMU · RTK-ready · Open firmware</div><div class="mc-foot"><span class="mp-price">₹45,000</span><a class="mc-link" href="#">View Course →</a></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M20 10v4"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (203)</div><h4>Drone Repair and Maintance</h4><div class="mp-spec">22,000mAh · 500 cycle rated</div><div class="mc-foot"><span class="mp-price">₹25,200</span><a class="mc-link" href="#">View Course →</a></div></div></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="drones">
+  <div class="wrap">
+  <div class="head center" style="text-align:left;max-width:100%;margin:0;">
+      <span class="badge" style="margin-bottom: 5px;">Drones</span>
+    </div>
+    <div class="mp-head-row">
+      <div class="mp-tabs">
+	  <h2>Buy Ready to Fly Drones</h2>
+      </div>
+      <a class="pillar-cta" style="--c:var(--orange);" href="#">View All Drones →</a>
+    </div>
+    <div class="mp-grid">
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--green);">DGCA Approved</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (128)</div><h4>FlapOne Nano-1</h4><div class="mp-spec">25 min flight time · 4K gimbal · 6km range</div><div class="mp-price-row"><div class="mp-price">₹45,000</div><button class="mp-add">Buy Now</button></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--orange);">Best Seller</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (94)</div><h4>FlapOne Mark-4</h4><div class="mp-spec">45 min flight time · RTK GPS · 10km range</div><div class="mp-price-row"><div class="mp-price">₹1,25,000</div><button class="mp-add">Buy Now</button></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--purple);">Flagship</span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★☆ (61)</div><h4>Pixhawk 6X Flight Controller</h4><div class="mp-spec">Dual IMU · RTK-ready · Open firmware</div><div class="mp-price-row"><div class="mp-price">₹18,500</div><button class="mp-add">Buy Now</button></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M20 10v4"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (203)</div><h4>Payload Flight Battery 6S</h4><div class="mp-spec">22,000mAh · 500 cycle rated</div><div class="mp-price-row"><div class="mp-price">₹15,200</div><button class="mp-add">Buy Now</button></div></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="marketplace" style="background:var(--grey-bg);">
+  <div class="wrap">
+  <div class="head center" style="text-align:left;max-width:100%;margin:0;">
+      <span class="badge" style="margin-bottom: 5px;">Marketplace</span>
+    </div>
+    <div class="mp-head-row">
+      <div class="mp-tabs">
+	  <h2>Shop Drone Components</h2>
+      </div>
+      <a class="pillar-cta" style="--c:var(--orange);" href="#">View All Products →</a>
+    </div>
+    <div class="mp-grid">
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--green);">DGCA Approved</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (128)</div><h4>Multi-Brands Drone Motors</h4><div class="mp-spec">25 min flight time · 4K gimbal · 6km range</div><div class="mp-price-row"><div class="mp-price">₹5,000</div><button class="mp-add">Buy Now</button></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--orange);">Best Seller</span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 9l10 4 10-4-10-7z" stroke-linejoin="round"/><path d="M6 12v6l6 3 6-3v-6" stroke-linejoin="round"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (94)</div><h4>(ESC) Drone Speed Controller</h4><div class="mp-spec">45 min flight time · RTK GPS · 10km range</div><div class="mp-price-row"><div class="mp-price">₹25,000</div><button class="mp-add">Buy Now</button></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><span class="mp-badge" style="background:var(--purple);">Flagship</span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★☆ (61)</div><h4>FPV Goggles</h4><div class="mp-spec">Dual IMU · RTK-ready · Open firmware</div><div class="mp-price-row"><div class="mp-price">₹8,500</div><button class="mp-add">Buy Now</button></div></div></div>
+      <div class="mp-card"><div class="mp-thumb"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M20 10v4"/></svg></div><div class="mp-body"><div class="mp-stars">★★★★★ (203)</div><h4>Drone Kit</h4><div class="mp-spec">22,000mAh · 500 cycle rated</div><div class="mp-price-row"><div class="mp-price">₹1200</div><button class="mp-add">Buy Now</button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="section">
+  <div class="wrap">
+    <div class="head center">
+      <span class="badge">Awards &amp; Recognition</span>
+      <h2>Trusted by Industry Leaders</h2>
+      <p>Our work has been recognised by India's key aviation and technology institutions.</p>
+    </div>
+    <div class="recog-row">
+      <div class="recog-item"><div class="ri"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-width="1.6"/></svg></div><div class="yr">2024</div><h4>DGCA RPTO Approval</h4><p>Renewed annually, current standing.</p></div>
+      <div class="recog-item"><div class="ri"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke-width="1.6"/></svg></div><div class="yr">2023</div><h4>DPIIT Startup Recognition</h4><p>Recognised under Startup India.</p></div>
+      <div class="recog-item"><div class="ri"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1 3-6z" stroke-width="1.6"/></svg></div><div class="yr">2023</div><h4>ISO 9001:2015</h4><p>Quality management certification.</p></div>
+      <div class="recog-item"><div class="ri"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke-width="1.6"/></svg></div><div class="yr">2022</div><h4>MSME Registration</h4><p>Udyam-certified enterprise.</p></div>
+    </div>
+    <div class="center" style="margin-top:30px;"><a class="btn btn-outline" href="#">View All Awards &amp; Recognitions →</a></div>
+  </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section class="section success-band" id="success">
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div class="head center">
+      <span class="badge">Verified Outcomes</span>
+      <h2>Real Projects, Real Results</h2>
+      <p>Every figure below is confirmed with the client before it's published — nothing here is a projection.</p>
+    </div>
+    <div class="success-slider" id="successSlider">
+      <div class="success-card">
+        <div class="sc-glow"></div>
+        <div class="sc-top"><span class="sc-sector">Energy · Solar</span><span class="sc-days">5 days on site</span></div>
+        <h4>Thermal inspection across a 500-acre solar plant</h4>
+        <p class="sc-desc">A regional power transmission company needed underperforming panel strings identified across a full array without shutting down generation. FlapOne's thermal-imaging crews covered the entire plant in a single five-day window.</p>
+        <div class="success-metrics">
+          <div><div class="mn">500</div><div class="ml">Acres covered</div></div>
+          <div><div class="mn">1,260</div><div class="ml">Faults flagged</div></div>
+          <div><div class="mn">5</div><div class="ml">Days on site</div></div>
+          <div><div class="mn">+4.5%</div><div class="ml">Output recovered</div></div>
+        </div>
+        <div class="success-foot">
+          <div class="success-client"><div class="sc-avatar">RT</div><div><div class="scn">Regional Transmission Co.</div><div class="scr">Power &amp; Energy</div></div></div>
+          <a class="success-link" href="#">Read Full Story →</a>
+        </div>
+      </div>
+      <div class="success-card">
+        <div class="sc-glow"></div>
+        <div class="sc-top"><span class="sc-sector">Mining · Volumetrics</span><span class="sc-days">48h turnaround</span></div>
+        <h4>Stockpile survey across 3 mines in 48 hours</h4>
+        <p class="sc-desc">A mid-cap coal mining operator replaced a manual measurement process that took a ground survey team two weeks per site with a weekly drone-based volumetric survey across three active mines.</p>
+        <div class="success-metrics">
+          <div><div class="mn">10,000</div><div class="ml">Acres mapped</div></div>
+          <div><div class="mn">48h</div><div class="ml">Turnaround</div></div>
+          <div><div class="mn">±2.4%</div><div class="ml">Accuracy</div></div>
+          <div><div class="mn">12</div><div class="ml">Weeks/yr saved</div></div>
+        </div>
+        <div class="success-foot">
+          <div class="success-client"><div class="sc-avatar">MC</div><div><div class="scn">Mid-Cap Coal Operator</div><div class="scr">Mining</div></div></div>
+          <a class="success-link" href="#">Read Full Story →</a>
+        </div>
+      </div>
+      <div class="success-card">
+        <div class="sc-glow"></div>
+        <div class="sc-top"><span class="sc-sector">Agriculture · Spraying</span><span class="sc-days">1 season</span></div>
+        <h4>Precision spraying across 2,200 acres of farmland</h4>
+        <p class="sc-desc">An agri-FPO needed pesticide coverage without the crop damage and water use of tractor spraying. FlapOne crews delivered variable-rate spraying across the full growing season with a per-acre cost cut against manual labour.</p>
+        <div class="success-metrics">
+          <div><div class="mn">2,200</div><div class="ml">Acres sprayed</div></div>
+          <div><div class="mn">-38%</div><div class="ml">Water used</div></div>
+          <div><div class="mn">-22%</div><div class="ml">Cost per acre</div></div>
+          <div><div class="mn">96</div><div class="ml">Flight sorties</div></div>
+        </div>
+        <div class="success-foot">
+          <div class="success-client"><div class="sc-avatar">GV</div><div><div class="scn">Godavari Valley FPO</div><div class="scr">Agriculture</div></div></div>
+          <a class="success-link" href="#">Read Full Story →</a>
+        </div>
+      </div>
+      <div class="success-card">
+        <div class="sc-glow"></div>
+        <div class="sc-top"><span class="sc-sector">Government · Land Records</span><span class="sc-days">6 weeks</span></div>
+        <h4>Digitising land records for 40 villages</h4>
+        <p class="sc-desc">A municipal survey department needed high-resolution parcel-level maps to resolve boundary disputes. FlapOne delivered georeferenced orthomosaics for 40 villages ahead of the state's digitisation deadline.</p>
+        <div class="success-metrics">
+          <div><div class="mn">40</div><div class="ml">Villages mapped</div></div>
+          <div><div class="mn">3cm</div><div class="ml">Ground resolution</div></div>
+          <div><div class="mn">6</div><div class="ml">Weeks to deliver</div></div>
+          <div><div class="mn">11,400</div><div class="ml">Parcels surveyed</div></div>
+        </div>
+        <div class="success-foot">
+          <div class="success-client"><div class="sc-avatar">DS</div><div><div class="scn">District Survey Dept.</div><div class="scr">Government</div></div></div>
+          <a class="success-link" href="#">Read Full Story →</a>
+        </div>
+      </div>
+    </div>
+    <div class="success-nav">
+      <button id="successPrev" aria-label="Previous success story">‹</button>
+      <button id="successNext" aria-label="Next success story">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-band">
+  <div class="wrap">
+    <div class="head center" style="margin-bottom:36px;">
+      <span class="badge">Testimonials</span>
+      <h2>What Our Clients Say</h2>
+      <p>From enterprise leaders to individual pilots — hear from those who fly with FlapOne.</p>
+    </div>
+    <div class="testi-slider">
+      <button class="testi-arrow" id="testiPrev" aria-label="Previous testimonial">‹</button>
+      <div class="testi-card testi-fade" id="testiCard">
+        <div class="testi-quote-icon">"</div>
+        <div class="testi-stars" id="testiStars">★★★★★</div>
+        <p class="testi-quote" id="testiQuote">The Dwarka centre's instructors were genuinely thorough — real flight hours, not just slides. I passed the DGCA exam on the first attempt and had a paying survey contract within a month.</p>
+        <div class="testi-person">
+          <div class="testi-avatar" id="testiAvatar">PR</div>
+          <div><div class="pname" id="testiName">Priya Rao</div><div class="prole" id="testiRole">RPC holder, batch of 2026</div></div>
+        </div>
+      </div>
+      <button class="testi-arrow" id="testiNext" aria-label="Next testimonial">›</button>
+    </div>
+    <div class="testi-progress"><div class="testi-progress-bar" id="testiProgressBar"></div></div>
+    <div class="testi-dots" id="testiDots"></div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="section" id="insights">
+  <div class="wrap">
+    <div class="head center">
+      <span class="badge">Guides &amp; Blog</span>
+      <h2>Latest Insights from the Drone Ecosystem</h2>
+      <p>Regulation, operations and manufacturing notes from our engineering and compliance teams.</p>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-thumb"><span class="it-cat">Regulation</span><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke-width="1.4"/></svg></div>
+        <div class="insight-body">
+          <h4>Understanding DGCA drone rules: a complete guide</h4>
+          <p class="excerpt">What changed in the latest amendment and what it means for commercial operators.</p>
+          <div class="insight-meta-row">
+            <div class="insight-author"><div class="ia-avatar">FT</div><span>FA Team</span></div>
+            <a class="insight-read" href="#">Read<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-thumb"><span class="it-cat">Infrastructure</span><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12" stroke-width="1.4"/></svg></div>
+        <div class="insight-body">
+          <h4>How drone technology is transforming public infrastructure</h4>
+          <p class="excerpt">Case notes from municipal asset-mapping projects across three states.</p>
+          <div class="insight-meta-row">
+            <div class="insight-author"><div class="ia-avatar">FT</div><span>FA Team</span></div>
+            <a class="insight-read" href="#">Read<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-thumb"><span class="it-cat">Manufacturing</span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke-width="1.4"/><path d="M12 8v4l3 2" stroke-width="1.4"/></svg></div>
+        <div class="insight-body">
+          <h4>Choosing between fixed-wing and multirotor for survey work</h4>
+          <p class="excerpt">A practical breakdown of range, payload and cost trade-offs.</p>
+          <div class="insight-meta-row">
+            <div class="insight-author"><div class="ia-avatar">FT</div><span>FA Team</span></div>
+            <a class="insight-read" href="#">Read<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center" style="margin-top:30px;"><a class="btn btn-outline" href="#">View All Articles →</a></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section"  style="background:var(--grey-bg);">
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Ready to Launch Your Aerial Journey?</h2>
+      <p>Whether it's a single site survey, a fleet-wide training programme, or a custom airframe build — tell us the mission and we'll route it to the right team.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#quote">Request Quote</a>
+        <a class="btn btn-outline" href="#training">RPTO Admissions</a>
+      </div>
+      <div class="contact-line">+91 11 4084 0000 · hello@flapone.com · Mon–Sat, 9am–7pm IST</div>
+    </div>
+  </div>
+</section>
+<!-- TRAINING CENTERS -->
+<section class="section" id="centres" >
+  <div class="wrap">
+  <div class="head center" style="text-align:left;max-width:100%;margin:0;">
+      <span class="badge" style="margin-bottom: 5px;">Multi-City Presence</span>
+    </div>
+    <div class="mp-head-row">
+      <div class="mp-tabs" style="padding-bottom:10px">
+	  <h2>4+ Training Centers Across India</h2>
+     </div>
+	<a class="pillar-cta" style="--c:var(--orange);padding-bottom:10px;" href="#">View All Centers →</a>
+    <div class="centers-panel" >
+      <div class="centers-list">
+        <div class="center-item active"><span class="cname">Dwarka, Delhi HQ</span><span class="ctag">Open today</span></div>
+        <div class="center-item"><span class="cname">Sonipat Centre</span><span class="ctag">Open today</span></div>
+        <div class="center-item"><span class="cname">Sohna Centre</span><span class="ctag">Open today</span></div>
+        <div class="center-item"><span class="cname">Rewa Centre</span><span class="ctag">Open today</span></div>
+      </div>
+      <div class="center-detail">
+        <h3 style="margin-bottom:8px;">Dwarka, Delhi HQ</h3>
+        <p class="addr" style="margin-bottom:8px;">E-549, 2nd Floor, Ramphal Chowk, Sector -7, Dwarka, New Delhi-110077 (Near Palam & Dwarka Sector 9 Metro Station) · Mon–Sat, 9am–6pm</p>
+		<div class="center-facilities" style="margin-bottom:10px;">
+          <div class="facility">📞 +91 9560268248</div>
+          <div class="facility">✉️ info@flapone.com</div>
+        </div>
+		<div style="margin-bottom:10px;">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14014.021226114082!2d77.0715153!3d28.5846141!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b490beaf2c5%3A0x9aec2b227ff1d745!2sFlapone%20Aviation%20Private%20Limited!5e0!3m2!1sen!2sin!4v1715337858316!5m2!1sen!2sin" width="100%" height="100%" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" spellcheck="false"></iframe>
+		</div>
+        <div class="center-facilities">
+          <div class="facility"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Indoor simulation lab</div>
+          <div class="facility"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated flying zone</div>
+          <div class="facility"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>On-site DGCA exam centre</div>
+          <div class="facility"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>230+ pilots certified here</div>
+        </div>
+        <a class="btn btn-primary" style="margin-top:26px;" href="#">Book a Seat at This Centre</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo"><span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>FlapOne</div>
+        <p>India's end-to-end drone technology platform — training, operations, manufacturing and supply under one roof.</p>
+      </div>
+      <div class="foot-col"><h5>Training</h5><a href="#">RPC Certification</a><a href="#">Corporate Batches</a><a href="#">Training Centres</a><a href="#">Exam Prep</a></div>
+      <div class="foot-col"><h5>Distribution</h5><a href="#">Agriculture</a><a href="#">Mining</a><a href="#">Construction</a><a href="#">Government</a></div>
+      <div class="foot-col"><h5>Manufacturing</h5><a href="#">Custom UAV Builds</a><a href="#">OEM Contracts</a><a href="#">Configurator</a><a href="#">Spec Sheets</a></div>
+      <div class="foot-col"><h5>Store</h5><a href="#">About FlapOne</a><a href="#">Case Studies</a><a href="#">Insights</a><a href="#">Contact</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 FlapOne Aviation Pvt. Ltd. · DGCA Regt. Id-07214 · GSTIN 07AAECF0000A1Z5</span>
+      <span>Privacy · Terms · Sitemap</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-outline" href="tel:+911140840000" style="flex:0;">Call</a>
+  <a class="btn btn-primary" href="#quote">Get a Quote</a>
+</div>
+
+<script>
+document.querySelectorAll('.mp-tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.mp-tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+}));
+document.querySelectorAll('.center-item').forEach(item=>item.addEventListener('click',()=>{
+  document.querySelectorAll('.center-item').forEach(x=>x.classList.remove('active'));
+  item.classList.add('active');
+}));
+
+
+/* ===== SUCCESS STORIES SLIDER ===== */
+const successSlider=document.getElementById('successSlider');
+const successCards=successSlider.querySelectorAll('.success-card');
+let successIdx=0;
+function scrollToSuccess(i){
+  successIdx=(i+successCards.length)%successCards.length;
+  const card=successCards[successIdx];
+  successSlider.scrollTo({left:card.offsetLeft-successSlider.offsetLeft, behavior:'smooth'});
+}
+document.getElementById('successPrev').addEventListener('click',()=>scrollToSuccess(successIdx-1));
+document.getElementById('successNext').addEventListener('click',()=>scrollToSuccess(successIdx+1));
+
+/* ===== TESTIMONIAL CAROUSEL ===== */
+const testimonials=[
+  {stars:5, quote:"The Dwarka centre's instructors were genuinely thorough — real flight hours, not just slides. I passed the DGCA exam on the first attempt and had a paying survey contract within a month.", initials:'PR', name:'Priya Rao', role:'RPC holder, batch of 2026'},
+  {stars:5, quote:"FlapOne mapped our entire 500-acre solar plant in five days and flagged faults our ground team had missed for months. The report was ready before our internal review meeting.", initials:'AK', name:'Arjun Kapoor', role:'Ops Head, regional power transmission co.'},
+  {stars:4, quote:"We needed a custom payload drone built to a tight defence spec. FlapOne's engineering team iterated with us directly instead of routing everything through a sales layer.", initials:'SN', name:'Sunita Nair', role:'Procurement Lead, government contractor'},
+  {stars:5, quote:"Ordering flight controllers and batteries used to mean a two-week wait. FlapOne's store had our fleet parts GST invoiced and shipped within 48 hours.", initials:'RD', name:'Rahul Deshmukh', role:'Fleet Manager, agri-survey operator'}
+];
+let testiIdx=0, testiTimer;
+function buildTestiDots(){
+  const wrap=document.getElementById('testiDots');
+  wrap.innerHTML='';
+  testimonials.forEach((_,idx)=>{
+    const d=document.createElement('span');
+    if(idx===0) d.classList.add('active');
+    d.addEventListener('click',()=>{ renderTesti(idx); restartTestiAuto(); });
+    wrap.appendChild(d);
+  });
+}
+function renderTesti(i){
+  testiIdx=(i+testimonials.length)%testimonials.length;
+  const t=testimonials[testiIdx];
+  const card=document.getElementById('testiCard');
+  card.classList.remove('testi-fade'); void card.offsetWidth; card.classList.add('testi-fade');
+  document.getElementById('testiStars').textContent='★'.repeat(t.stars)+'☆'.repeat(5-t.stars);
+  document.getElementById('testiQuote').textContent=t.quote;
+  document.getElementById('testiAvatar').textContent=t.initials;
+  document.getElementById('testiName').textContent=t.name;
+  document.getElementById('testiRole').textContent=t.role;
+  document.querySelectorAll('#testiDots span').forEach((d,idx)=>d.classList.toggle('active', idx===testiIdx));
+  const bar=document.getElementById('testiProgressBar');
+  bar.style.animation='none'; void bar.offsetWidth; bar.style.animation='testiProgress 6s linear infinite';
+}
+function restartTestiAuto(){
+  clearInterval(testiTimer);
+  testiTimer=setInterval(()=>renderTesti(testiIdx+1), 6000);
+}
+document.getElementById('testiPrev').addEventListener('click',()=>{ renderTesti(testiIdx-1); restartTestiAuto(); });
+document.getElementById('testiNext').addEventListener('click',()=>{ renderTesti(testiIdx+1); restartTestiAuto(); });
+buildTestiDots();
+restartTestiAuto();
+</script>
+</body>
+</html>
