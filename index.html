@@ -94,7 +94,7 @@ header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,.92); ba
 header .logo .mark{width:165px; border-radius:8px; background:var(--paper); display:flex; align-items:center; justify-content:center;}
 @media(max-width:700px){header .logo .mark{width:105px;}}
 .foot-brand .logo{font-family:var(--font-d); font-weight:800; font-size:var(--fs-5); color:var(--navy);}
-.foot-brand .logo .mark{width:30px;height:30px; border-radius:8px; background:var(--orange); display:flex; align-items:center; justify-content:center;}
+.foot-brand .logo .mark{width:145px; border-radius:8px; background:var(--paper); display:flex; align-items:center; justify-content:center;}
 .foot-brand .logo .mark svg{width:16px;height:16px;}
 .navlinks{display:flex; gap:28px; align-items:center;}
 .navlinks a{font-size:var(--fs-3); color:var(--text); font-weight:500;padding: 20px 0;}
@@ -689,7 +689,7 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
 
 .app-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
 @media(max-width:900px){.app-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:480px){.app-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.app-grid{grid-template-columns:1fr;} .btn{padding: 9px 15px;}}
 .app-card{border:1px solid var(--border); border-radius:var(--r); padding:22px; text-align:center; background:#fff;}
 .app-card .ai{width:40px;height:40px; border-radius:9px; background:var(--grey-bg); display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
 .app-card .ai svg{width:19px;height:19px; stroke:var(--navy);}
@@ -987,12 +987,12 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
 			</div>
 		</div>
  		<div class="df fdc">
- 			<span class="badge">DGCA Approved RPTO</span>
+ 			<span class="badge mobile-hide">DGCA Approved RPTO</span>
 			<h1 id="heroTitle">Deploy Drones. <span class="accent">On</span> Demand.</h1>
  			<p class="lead" id="heroDesc">Fully crewed survey, mapping and inspection missions - insured pilots, DGCA permits and processed data delivered to your team.</p>
  			<div class="hero-ctas">
 				<a class="btn btn-primary" id="heroCta" href="#quote">Request a DaaS Quote<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></a>
-				<a class="btn btn-outline" href="#pillars">View FlapOne Services</a>
+				<a class="btn btn-outline" href="#pillars">Explore Services</a>
  			</div>
  			<div class="hero-trust">
 				<span class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>DGCA-Approved</span>
@@ -1758,10 +1758,8 @@ a:focus-visible, button:focus-visible, .opt:focus-visible, .opt-tile:focus-visib
  <div class="foot-brand">
  <div class="logo">
  <span class="mark">
- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
- <path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-width="1.8" stroke-linecap="round"/>
- </svg>
- </span>FlapOne
+	<img src="https://media.flapone.com/images/flapone-crm/assets/images/flapone_logo_v3.png" alt="FlapOne Logo">
+ </span>
  </div>
  <p>India's leading end to end drone technology platform - pilot training, field operations, custom builds, and hardware supply.</p>
  
@@ -1869,7 +1867,7 @@ const heroData = [
  // Pillar 2: Training (Academy)
  title: 'Get Certified. <span class="accent">Build Your Career.</span>',
  desc: 'Official DGCA Remote Pilot Certificate (RPC) training at our certified centers. Learn on actual enterprise rigs with hands on flight hours.',
- ctaText: 'Find a Training Center',
+ ctaText: 'View Courses',
  ctaHref: '#training'
  },
  {
